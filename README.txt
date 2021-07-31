@@ -31,3 +31,10 @@ USACO/
         ├── friday.py
         ├── ride.java
         └── ride.py
+ACSL/
+├── .DS_Store
+├── 2020-21_acslgraphs.py
+├── 2020-21_acsllexstring.py
+├── 2020-21_acslmultiplearrays.py
+├── 2020-21_acslsentences.py
+└── 2020-21_acslsubrect.py
