@@ -1,6 +1,7 @@
 import string
 import math
 import itertools
+from sys import maxsize
 
 
 def convert_arr_int(arr):
