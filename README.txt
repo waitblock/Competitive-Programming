@@ -5,6 +5,14 @@ File tree:
 USACO/
 ├── .DS_Store
 ├── Contest/
+│   ├── .DS_Store
+│   ├── 2015/
+│   │   ├── .DS_Store
+│   │   └── Dec/
+│   │       └── Bronze/
+│   │           ├── speeding.in
+│   │           ├── speeding.out
+│   │           └── speeding.py
 │   ├── 2020/
 │   │   ├── .DS_Store
 │   │   ├── Dec/
