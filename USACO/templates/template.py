@@ -1,3 +1,5 @@
+# NOTE TO SELF: DO NOT USE THIS TEMPLATE DURING THE REAL USACO CONTEST
+
 import string
 import math
 import itertools

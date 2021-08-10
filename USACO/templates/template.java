@@ -1,3 +1,5 @@
+// NOTE TO SELF: DO NOT USE THIS TEMPLATE DURING THE REAL USACO CONTEST
+
 import java.util.*;
 import java.io.*;
 
