@@ -1,60 +1,50 @@
-// TODO: Unfinished
-
 import java.util.*;
 import java.io.*;
 
 public class guess {
-  public static void main(String[] args) throws FileNotFoundException {
-    Scanner in = new Scanner(new File("guess.in"));
-    Map<String, String[]> charMap = new HashMap<>();
-    ArrayList<String> chara = new ArrayList<>();
-    ArrayList<Integer> freq = new ArrayList<>();
-    // Map<String, Integer> frequency = new HashMap<>();
-    int n = in.nextInt();
-    for(int i = 0; i<n; i++){
-      String animal = in.next();
-      int charCount = in.nextInt();
-      String[] animalChars = new String[charCount];
-      for(int j = 0; j<charCount; j++){
-        animalChars[j] = in.next();
-      }
-      // System.out.println(Arrays.toString(animalChars));
-      charMap.put(animal, animalChars);
-    }
-    ArrayList<String> onceChars = new ArrayList<>();
-    ArrayList<String> allChars = new ArrayList<>();
-    ArrayList<String[]> charsList = new ArrayList<>(charMap.values());
-    for(int i = 0; i<charsList.size(); i++){
-      String[] temp = charsList.get(i);
-      // System.out.println(Arrays.toString(temp));
-      for(int j = 0; j<temp.length; j++){
-        allChars.add(temp[j]);
-        if(onceChars.contains(temp[j])) continue;
-        onceChars.add(temp[j]);
-      }
-    }
-    System.out.println(onceChars);
-    System.out.println(allChars);
-    for(int i = 0; i<onceChars.size(); i++){
-      System.out.println(i);
-      String ch = onceChars.get(i);
-      int count = 0;
-      for(int j = 0; j<allChars.size(); j++){
-        if(allChars.get(j).equals(ch)){
-          count++;
+    public static void main(String[] args) throws FileNotFoundException {
+        Scanner in = new Scanner(new File("guess.in"));
+        Map<String, String[]> charMap = new HashMap<>();
+        ArrayList<String> animals = new ArrayList<>();
+        int n = in.nextInt();
+        for(int i = 0; i<n; i++){
+          String animal = in.next();
+          int charCount = in.nextInt();
+          String[] animalChars = new String[charCount];
+          for(int j = 0; j<charCount; j++){
+            animalChars[j] = in.next();
+          }
+          // System.out.println(Arrays.toString(animalChars));
+          charMap.put(animal, animalChars);
+          animals.add(animal);
         }
-      }
-      chara.add(ch);
-      freq.add(count);
+        // System.out.println(countSimilarChar(charMap, "sheep", "cow"));
+        int result = -(Integer.MAX_VALUE);
+        for(int i = 0; i<charMap.size(); i++){
+            for(int j = i+1; j<charMap.size(); j++){
+                result=Math.max(result, countSimilarChar(charMap,animals.get(i), animals.get(j)));
+                // System.out.println(i);
+                // System.out.println(j);
+                // System.out.println(result);
+                // System.out.println("..");
+            }
+        }
+        result++;
+        System.out.println(result);
+        PrintWriter out = new PrintWriter(new File("guess.out"));
+        out.println(result);
+        out.close();
     }
-    System.out.println(chara);
-    System.out.println(freq)
-    while(true){
 
+  static int countSimilarChar(Map<String, String[]> charMap, String animal1, String animal2){
+    String[] animal1Arr = charMap.get(animal1);
+    String[] animal2Arr = charMap.get(animal2);
+    int count = 0;
+    for(int i = 0; i<animal1Arr.length; i++){
+        for(int j = 0; j<animal2Arr.length; j++){
+            if(animal2Arr[j].equals(animal1Arr[i])) count++;
+        }
     }
-  }
-
-  static boolean check(ArrayList<Integer> freqs){
-
+    return count;
   }
 }
