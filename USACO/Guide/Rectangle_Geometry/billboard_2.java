@@ -1,5 +1,3 @@
-// wa on case 4
-
 import java.util.*;
 import java.io.*;
 
@@ -21,12 +19,14 @@ public class billboard_2 {
 
     // check for height
     // lawn_tr_y <= feed_tr_y && lawn_bl_y >= feed_tr_y
-    boolean coverHeight = (lawn[3] <= feed[3] && lawn[1] >= feed[1]);
+    // feed_tr_x >= lawn_tr_x || feed_bl_x <= lawn_bl_x
+    boolean coverHeight = (lawn[3] <= feed[3] && lawn[1] >= feed[1]) && (feed[2] >= lawn[2] || feed[0] <= lawn[0]);
     System.out.println("covers height: " + String.valueOf(coverHeight));
 
     // check for width
     // lawn_tr_x <= feed_tr_x && lawn_bl_x >= feed_bl_x
-    boolean coverWidth = (lawn[2] <= feed[2] && lawn[0] >= feed[0]);
+    // feed_tr_y >= lawn_tr_y && feed_bl_y <= lawn_bl_y
+    boolean coverWidth = (lawn[2] <= feed[2] && lawn[0] >= feed[0]) && (feed[3] >= lawn[3] || feed[1] <= lawn[1]);
     System.out.println("covers width: " + String.valueOf(coverWidth));
 
     PrintWriter out = new PrintWriter(new File("billboard.out"));
@@ -76,6 +76,17 @@ if the cow feed billboard is as wide or bigger than the lawnmower billboard but 
 top to bottom, then the tarp just needs to cover the height of the billboard that is not covered
 
 vice versa for height
+
+case 4 fix (corner case):
+the feed board must cover from the top to somewhere in the middle (or vice versa from the bottom),
+not from somewhere in the middle to somewhere in the middle in the case of the width being covered
+
+same thing but vice versa in the case of the height being covered
+
+implementation: add an or statement checking whether or not the feed board
+extends from the top or the bottom when covering the entire width
+
+again, vice versa in the case of the height being covered
 */
 
 /*
