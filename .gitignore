@@ -2,4 +2,5 @@
 *.in
 *.out
 *.class
-REMINDERS.txt
+*.txt
+!README.txt
