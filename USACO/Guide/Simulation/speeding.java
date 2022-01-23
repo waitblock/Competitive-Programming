@@ -32,6 +32,8 @@ public class speeding {
       ind += length;
     }
 
+    in.close();
+
     int result = 0;
     for(int i = 0; i<100; i++){
       result = Math.max(speeds[i]-limits[i], result);
