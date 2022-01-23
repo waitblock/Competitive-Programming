@@ -27,7 +27,9 @@ public class whitesheet {
     // System.out.println(inter_black1);
     // System.out.println(inter_black2);
 
-    if((inter_black1 + inter_black2) >= white_area){
+    int totalCovered = inter_black1 + inter_black2 - interArea(black1, black2);
+
+    if(totalCovered >= white_area){
       System.out.println("NO");
     }
     else{
@@ -44,7 +46,21 @@ public class whitesheet {
     return (tr_x-bl_x)*(tr_y-bl_y);
   }
 
+  static boolean intersect(int[] s1, int[] s2) {
+  	int bl_a_x = s1[0], bl_a_y = s1[1], tr_a_x = s1[2], tr_a_y = s1[3];
+  	int bl_b_x = s2[0], bl_b_y = s2[1], tr_b_x = s2[2], tr_b_y = s2[3];
+
+  	// no overlap
+  	if (bl_a_x >= tr_b_x || tr_a_x <= bl_b_x
+  			|| bl_a_y >= tr_b_y || tr_a_y <= bl_b_y) {
+  		return false;
+  	} else {
+  		return true;
+  	}
+  }
+
   static int interArea(int[] s1, int[] s2) {
+    if(!intersect(s1, s2)) return 0;
   	int bl_a_x = s1[0], bl_a_y = s1[1], tr_a_x = s1[2], tr_a_y = s1[3];
   	int bl_b_x = s2[0], bl_b_y = s2[1], tr_b_x = s2[2], tr_b_y = s2[3];
   	return (
