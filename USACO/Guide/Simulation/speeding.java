@@ -1,3 +1,5 @@
+// time spent: 24 min 0 sec
+
 import java.util.*;
 import java.io.*;
 
@@ -23,7 +25,7 @@ public class speeding {
 
     ind = 0;
 
-    for(int i = 0; i<n; i++){
+    for(int i = 0; i<m; i++){
       int length = in.nextInt();
       int speed = in.nextInt();
       for(int j = ind; j<ind+length; j++){
