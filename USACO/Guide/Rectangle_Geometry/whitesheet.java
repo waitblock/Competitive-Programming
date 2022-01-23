@@ -26,14 +26,14 @@ public class whitesheet {
     long inter_black2 = interArea(black2, white);
     long black_area = interArea(black1, black2);
 
-    System.out.println(white_area);
-    System.out.println(inter_black1);
-    System.out.println(inter_black2);
-    System.out.println(black_area);
+    // System.out.println(white_area);
+    // System.out.println(inter_black1);
+    // System.out.println(inter_black2);
+    // System.out.println(black_area);
 
     long area = white_area - (inter_black1 + inter_black2 - black_area);
 
-    System.out.println(area);
+    // System.out.println(area);
 
     if(area > 0L){
       System.out.println("YES");
