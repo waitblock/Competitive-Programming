@@ -24,14 +24,18 @@ public class whitesheet {
     long white_area = area(white);
     long inter_black1 = interArea(black1, white);
     long inter_black2 = interArea(black2, white);
-    long black_area = interArea(black1, black2);
+    long[] black_area = intersection(black1, black2);
+    System.out.println(Arrays.toString(black_area));
+    long[] black_white = intersection(black_area, white);
+    System.out.println(Arrays.toString(black_white));
+    long black_white_inter = interArea(black_area, white);
 
     // System.out.println(white_area);
     // System.out.println(inter_black1);
     // System.out.println(inter_black2);
     // System.out.println(black_area);
 
-    long area = white_area - (inter_black1 + inter_black2 - black_area);
+    long area = white_area - (inter_black1 + inter_black2 - black_white_inter);
 
     // System.out.println(area);
 
@@ -63,6 +67,14 @@ public class whitesheet {
   	} else {
   		return true;
   	}
+  }
+
+  // TODO: Implement function that returns the coordinates of the intersecting triangle
+  static long[] intersection(long[] s1, long[] s2){
+  	long bl_a_x = s1[0], bl_a_y = s1[1], tr_a_x = s1[2], tr_a_y = s1[3];
+  	long bl_b_x = s2[0], bl_b_y = s2[1], tr_b_x = s2[2], tr_b_y = s2[3];
+  	long[] rectInter = {Math.max(bl_a_x, bl_b_x), Math.max(bl_a_y, bl_b_y), Math.min(tr_a_x, tr_b_x), Math.min(tr_a_y, tr_b_y)};
+    return rectInter;
   }
 
   static long interArea(long[] s1, long[] s2) {
