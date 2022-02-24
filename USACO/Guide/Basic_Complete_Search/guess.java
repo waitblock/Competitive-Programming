@@ -1,5 +1,3 @@
-// INCOMPLETE
-
 import java.util.*;
 import java.io.*;
 
@@ -32,9 +30,13 @@ public class guess {
 
     int result = 0;
 
-    while(true){
-
+    for(int i = 0; i<n-1; i++){
+      for(int j = i+1; j<n; j++){
+        result = Math.max(countSimilar(i, j, attributes), result);
+      }
     }
+
+    result++;
 
     System.out.println(result);
 
@@ -43,20 +45,32 @@ public class guess {
     out.close();
   }
 
-  static HashMap<String, Integer> generateFrequency(ArrayList<ArrayList<String>> attributes){
-    HashMap<String, Integer> freq = new HashMap<>();
-
-    for(ArrayList<String> list : attributes){
-      for(int i = 0; i<list.size(); i++){
-        int c = 1;
-        String a = list.get(i);
-        if(freq.keySet().contains(a)){
-          c += freq.get(a);
-        }
-        freq.put(a, c);
+  static int countSimilar(int a1, int a2, ArrayList<ArrayList<String>> attributes){
+    int count = 0;
+    ArrayList<String> al1 = attributes.get(a1);
+    ArrayList<String> al2 = attributes.get(a2);
+    for(int i = 0; i<al1.size(); i++){
+      if(al2.contains(al1.get(i))){
+        count++;
       }
     }
-
-    return freq;
+    return count;
   }
+
+  // static HashMap<String, Integer> generateFrequency(ArrayList<ArrayList<String>> attributes){
+  //   HashMap<String, Integer> freq = new HashMap<>();
+  //
+  //   for(ArrayList<String> list : attributes){
+  //     for(int i = 0; i<list.size(); i++){
+  //       int c = 1;
+  //       String a = list.get(i);
+  //       if(freq.keySet().contains(a)){
+  //         c += freq.get(a);
+  //       }
+  //       freq.put(a, c);
+  //     }
+  //   }
+  //
+  //   return freq;
+  // }
 }
