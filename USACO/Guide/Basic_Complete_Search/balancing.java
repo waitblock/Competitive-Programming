@@ -1,5 +1,3 @@
-// tle
-
 import java.util.*;
 import java.io.*;
 
@@ -25,12 +23,11 @@ public class balancing {
     // }
 
     for(int i = 0; i<n; i++){
-      int x = points[i][0];
-      int y = points[i][1];
-      result = Math.min(countM(points, x-1, y-1), result);
-      result = Math.min(countM(points, x+1, y+1), result);
-      result = Math.min(countM(points, x-1, y+1), result);
-      result = Math.min(countM(points, x+1, y-1), result);
+      for(int j = 0; j<n; j++){
+        int x = points[i][0]+1;
+        int y = points[j][1]+1;
+        result = Math.min(countM(points, x, y), result);
+      }
     }
 
     System.out.println(result);
