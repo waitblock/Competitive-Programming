@@ -1,4 +1,5 @@
 ![](https://img.shields.io/github/repo-size/waitblock/Competitive-Programming)
+![](https://img.shields.io/tokei/lines/github/waitblock/Competitive-Programming)
 
 My very bad solutions to problems :)
 
