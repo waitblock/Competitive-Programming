@@ -1,7 +1,7 @@
 import java.util.*;
 import java.io.*;
 
-public class marathon_2 {
+public class marathon_v2 {
   public static void main(String[] args) throws FileNotFoundException {
     Scanner in = new Scanner(new File("marathon.in"));
     int n = in.nextInt();
