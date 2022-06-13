@@ -1,5 +1,3 @@
-// tle 8-12, 14-15
-
 import java.util.*;
 import java.io.*;
 
@@ -11,22 +9,20 @@ public class censor{
 
     in.close();
 
-    String result = "";
+    StringBuilder result = new StringBuilder();
 
     // System.out.println(t.length());
     for(int i = 0; i<s.length(); i++){
-      result += s.charAt(i);
+      result.append(s.charAt(i));
       // System.out.println(result);
       if(result.length() >= t.length()){
         // System.out.println(result.substring(result.length()-t.length(), result.length()));
         if(result.substring(result.length()-t.length(), result.length()).equals(t)){
-          result = result.substring(0,result.length()-t.length());
+          result.delete(result.length()-t.length(), result.length());
           // System.out.println(result.substring(0,result.length()-t.length()));
         }
       }
     }
-
-    System.out.println(result);
 
     PrintWriter out = new PrintWriter(new File("censor.out"));
     out.println(result);
