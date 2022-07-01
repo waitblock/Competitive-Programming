@@ -22,9 +22,8 @@ public class measurement_v2 {
 		int result = 0;
 		String[] names = {"Bessie", "Elsie", "Mildred"};
 		int[] outputs = {7,7,7};
-		boolean[] highestOutputLast = {false, false, false};
+		boolean[] highestOutputLast = {true, true, true};
 		for(int i = 1; i<100; i++){
-			boolean changed = false;
 			for(Measure m : measures){
 				if(m.day == i){
 					if(m.name.equals("Bessie")){
@@ -36,16 +35,15 @@ public class measurement_v2 {
 					if(m.name.equals("Mildred")){
 						outputs[2] += m.change;
 					}
-					changed = true;
 				}
 			}
-			if(!changed) continue;
 			int highestOut = Integer.MIN_VALUE;
 			ArrayList<String> highest = new ArrayList<>();
 			for(int j = 0; j<3; j++){
 				if(outputs[j] > highestOut){
 					highest.clear();
 					highest.add(names[j]);
+					highestOut = Integer.MIN_VALUE;
 				}
 				if(outputs[j] == highestOut){
 					highest.add(names[j]);
@@ -55,8 +53,6 @@ public class measurement_v2 {
 			if(highest.contains("Bessie")) newHOL[0] = true;
 			if(highest.contains("Elsie")) newHOL[1] = true;
 			if(highest.contains("Mildred")) newHOL[2] = true;
-			System.out.println(Arrays.toString(newHOL));
-			System.out.println(Arrays.toString(highestOutputLast));
 			for(int j = 0; j<3; j++){
 				if(newHOL[j] != highestOutputLast[j]){
 					result++;
