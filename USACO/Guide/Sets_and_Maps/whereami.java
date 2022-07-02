@@ -25,6 +25,7 @@ public class whereami {
 				in.close();
 				System.exit(0);
 			}
+			seqs.clear();
 		}
 	}
 }
