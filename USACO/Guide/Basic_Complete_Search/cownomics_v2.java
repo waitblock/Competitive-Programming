@@ -1,5 +1,3 @@
-// tles 7, 10
-
 import java.util.*;
 import java.io.*;
 
@@ -33,27 +31,18 @@ public class cownomics_v2 {
 			int i = set[0];
 			int j = set[1];
 			int k = set[2];
-			char[][] spottyChars = new char[n][3];
+			boolean[] spottyGenome = new boolean[64];
 			for(int l = 0; l<n; l++){
-				char[] chars = new char[3];
-				chars[0] = spottyGenomes[l][i];
-				chars[1] = spottyGenomes[l][j];
-				chars[2] = spottyGenomes[l][k];
-				// Arrays.sort(chars);
-				spottyChars[l] = chars;
+				int sum = convert(spottyGenomes[l][i]) + convert(spottyGenomes[l][j])*4 + convert(spottyGenomes[l][k])*16;
+				spottyGenome[sum] = true;
 			}
 			boolean explainsSpottiness = true;
 			for(int l = 0; l<n; l++){
-				char[] chars = new char[3];
-				chars[0] = plainGenomes[l][i];
-				chars[1] = plainGenomes[l][j];
-				chars[2] = plainGenomes[l][k];
-				// Arrays.sort(chars);
-				for(int a = 0; a<n; a++){
-					if(Arrays.equals(chars, spottyChars[a])){
-						explainsSpottiness = false;
-						l = a = n;
-					}
+				int sum = convert(plainGenomes[l][i]) + convert(plainGenomes[l][j])*4 + convert(plainGenomes[l][k])*16;
+				
+				if(spottyGenome[sum]){
+					explainsSpottiness = false;
+					break;
 				}
 			}
 			if(explainsSpottiness) result++;
@@ -62,5 +51,12 @@ public class cownomics_v2 {
 		PrintWriter out = new PrintWriter(new File("cownomics.out"));
 		out.println(result);
 		out.close();
+	}
+	static int convert(char c){
+		if(c == 'A') return 0;
+		if(c == 'C') return 1;
+		if(c == 'G') return 2;
+		if(c == 'T') return 3;
+		return -1;
 	}
 }
