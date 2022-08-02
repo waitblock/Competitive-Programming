@@ -1,4 +1,3 @@
-// wa case 10
 import java.util.*;
 // import java.io.*;
 
@@ -28,7 +27,7 @@ public class cowyear {
 			}
 			String cZodiac = zodiacs[cnZodiac];
 			int cDiff = Math.abs(nZodiacs.get(zodiac)-nZodiacs.get(cZodiac));
-			if(cDiff == 0 && type.equals("next")){
+			if(cDiff == 0){
 				cDiff = 12;
 			}
 			if(type.equals("next") && cnZodiac > nZodiacs.get(zodiac)){
