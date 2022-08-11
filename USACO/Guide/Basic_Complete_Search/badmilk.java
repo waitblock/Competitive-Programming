@@ -23,20 +23,21 @@ public final class badmilk {
 			sick.put(p,m2);
 		}
 		int result = -1;
-		for(int i = 1; i<m; i++){
+		for(int i = 1; i<=m; i++){
 			boolean bad = true;
 			for(int p : sick.keySet()){
 				int t = sick.get(p);
 				System.out.println("t: "+String.valueOf(t));
 				
 				boolean valid = false;
-				for(int j = 0; j<n; j++){
+				for(int j = 0; j<d; j++){
 					if(person[j] == p && milk[j] == i){
 						System.out.println("person[j]: " + String.valueOf(person[j]));
 						System.out.println("milk[j]: " + String.valueOf(milk[j]));
 						System.out.println("time[j]: " + String.valueOf(time[j]));
 						if(time[j] < t){
 							valid = true;
+							break;
 						}
 					}
 				}
@@ -44,20 +45,22 @@ public final class badmilk {
 					bad = false;
 					break;
 				}
-				System.out.println("---");
+				System.out.println("-------");
 			}
-			System.out.println("===");
 			int count = 0;
 			if(bad){
 				System.out.println("hi");
 				HashSet<Integer> whoDrank = new HashSet<>();
-				for(int j = 0; j<n; j++){
+				for(int j = 0; j<d; j++){
 					if(milk[j] == i){
 						whoDrank.add(person[j]);
 					}
 				}
+				System.out.println(whoDrank.size());
+				System.out.println(whoDrank);
 				result = Math.max(whoDrank.size(), result);
 			}
+			System.out.println("===");
 		}
 		System.out.println(result);
 	}
