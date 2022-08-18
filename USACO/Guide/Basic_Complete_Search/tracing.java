@@ -47,10 +47,10 @@ public final class tracing {
           remainingInt[k] = j;
         }
         for(int k = 0; k<t; k++){
-          if(inf[a[k]] && !inf[b[k]]){
+          if(inf[a[k]] && !inf[b[k]] && remainingInt[a[k]] > 0){
             inf[b[k]] = true;
           }
-          if(!inf[a[k]] && inf[b[k]]){
+          else if(!inf[a[k]] && inf[b[k]] && remainingInt[b[k]] > 0){
             inf[a[k]] = true;
           }
           if(inf[a[k]] || inf[b[k]]){
@@ -61,12 +61,6 @@ public final class tracing {
         boolean valid = true;
         for(int k = 1; k<=n; k++){
           if(inf[k] != infected[k]){
-            valid = false;
-            break;
-          }
-        }
-        for(int k = 1; k<=n; k++){
-          if(remainingInt[k] < 0){
             valid = false;
             break;
           }
