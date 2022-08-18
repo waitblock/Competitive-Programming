@@ -19,7 +19,7 @@ public final class badmilk {
 		HashMap<Integer, Integer> sick = new HashMap<>(); // p, m
 		for(int i = 0; i<s; i++){
 			int p = in.nextInt();
-			int m2 = in.nextInt(); 
+			int m2 = in.nextInt();
 			sick.put(p,m2);
 		}
 		int result = -1;
@@ -28,7 +28,7 @@ public final class badmilk {
 			for(int p : sick.keySet()){
 				int t = sick.get(p);
 				System.out.println("t: "+String.valueOf(t));
-				
+
 				boolean valid = false;
 				for(int j = 0; j<d; j++){
 					if(person[j] == p && milk[j] == i){
@@ -63,5 +63,8 @@ public final class badmilk {
 			System.out.println("===");
 		}
 		System.out.println(result);
+		PrintWriter out = new PrintWriter(new File("badmilk.out"));
+		out.println(result);
+		out.close();
 	}
 }
