@@ -14,26 +14,9 @@ public final class tracing {
       }
     }
     // Log of interactions
-    int[] time = new int[t];
-    int[] a = new int[t];
-    int[] b = new int[t];
-    for(int i = 0; i<t; i++){
-      time[i] = in.nextInt();
-      a[i] = in.nextInt();
-      b[i] = in.nextInt();
-    }
-    int[] tempT = new int[t];
-    int[] tempA = new int[t];
-    int[] tempB = new int[t];
-    for(int i = 0; i<t; i++){
-      tempT[i] = time[i];
-      tempA[i] = a[i];
-      tempB[i] = b[i];
-    }
-    Arrays.sort(time);
-    for(int i = 0; i<t; i++){
-      a[i] = tempA[findIndex(tempT, time[i])];
-      b[i] = tempB[findIndex(tempT, time[i])];
+    int[][] interactions = new int[251][2];
+    for(int i = 0; i<t; i++) {
+    	interactions[in.nextInt()] = new int[] {in.nextInt(), in.nextInt()};
     }
     HashSet<Integer> validPZero = new HashSet<>();
     int minK = Integer.MAX_VALUE;
@@ -46,16 +29,22 @@ public final class tracing {
         for(int k = 0; k<=n; k++){
           remainingInt[k] = j;
         }
-        for(int k = 0; k<t; k++){
-          if(inf[a[k]] && !inf[b[k]] && remainingInt[a[k]] > 0){
-            inf[b[k]] = true;
+
+        for(int k = 1; k<251; k++){
+        	if(interactions[k][0] == 0) {
+        		continue;
+        	}
+          if(inf[interactions[k][0]] && !inf[interactions[k][1]] && remainingInt[interactions[k][0]] > 0){
+            inf[interactions[k][1]] = true;
+            remainingInt[interactions[k][0]]--;
           }
-          else if(!inf[a[k]] && inf[b[k]] && remainingInt[b[k]] > 0){
-            inf[a[k]] = true;
+          else if(!inf[interactions[k][0]] && inf[interactions[k][1]] && remainingInt[interactions[k][1]] > 0){
+            inf[interactions[k][0]] = true;
+            remainingInt[interactions[k][1]]--;
           }
-          if(inf[a[k]] || inf[b[k]]){
-            remainingInt[a[k]]--;
-            remainingInt[b[k]]--;
+          else if(inf[interactions[k][0]] && inf[interactions[k][1]]) {
+        	  remainingInt[interactions[k][0]]--;
+        	  remainingInt[interactions[k][1]]--;
           }
         }
         boolean valid = true;
@@ -83,13 +72,5 @@ public final class tracing {
     PrintWriter out = new PrintWriter(new File("tracing.out"));
     out.println(result);
     out.close();
-  }
-  static int findIndex(int[] arr, int k){
-    for(int i = 0; i<arr.length; i++){
-      if(arr[i] == k){
-        return i;
-      }
-    }
-    return -1;
   }
 }

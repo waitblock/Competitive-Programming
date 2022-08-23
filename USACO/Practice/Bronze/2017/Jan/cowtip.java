@@ -1,0 +1,39 @@
+import java.util.*;
+import java.io.*;
+
+public final class cowtip {
+  static int[][] cows;
+  public static void main(String[] args) throws FileNotFoundException {
+    Scanner in = new Scanner(new File("cowtip.in"));
+    int n = in.nextInt();
+    cows = new int[n][n];
+    in.nextLine();
+    for(int i = 0; i<n; i++){
+      char[] temp = in.nextLine().toCharArray();
+      for(int j = 0; j<n; j++){
+        cows[i][j] = Integer.parseInt("" + temp[j]);
+      }
+      // System.out.println(Arrays.toString(cows[i]));
+    }
+    in.close();
+    int result = 0;
+    for(int i = n-1; i>=0; i--){
+      for(int j = n-1; j>=0; j--){
+        if(cows[i][j] == 1){
+          tip(i,j);
+          result++;
+        }
+      }
+    }
+    PrintWriter out = new PrintWriter(new File("cowtip.out"));
+    out.println(result);
+    out.close();
+  }
+  static void tip(int r, int c){
+    for(int i = 0; i<=r; i++){
+      for(int j = 0; j<=c; j++){
+        cows[i][j] = 1-cows[i][j];
+      }
+    }
+  }
+}
