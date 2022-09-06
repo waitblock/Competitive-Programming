@@ -1,4 +1,4 @@
-// Time complexity: O(tn^2)
+// Time complexity: O(tn^2(n/2))
 // tle case 3
 
 import java.util.*;
