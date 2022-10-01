@@ -2,15 +2,18 @@ import java.util.*;
 import java.io.*;
 
 public final class fairphoto_v2 {
-  public static void main(String[] args) throws FileNotFoundException {
-    Scanner in = new Scanner(new File("fairphoto.in"));
-    int n = in.nextInt();
+  // public static void main(String[] args) throws FileNotFoundException {
+  public static void main(String[] args) throws IOException {
+    // Scanner in = new Scanner(new File("fairphoto.in"));
+    BufferedReader br = new BufferedReader(new FileReader("fairphoto.in"));
+    int n = Integer.parseInt(br.readLine());
     Cow[] cows = new Cow[n];
     for(int i = 0; i<n; i++){
-      cows[i] = new Cow(in.nextInt(), in.next());
+      StringTokenizer st = new StringTokenizer(br.readLine());
+      cows[i] = new Cow(Integer.parseInt(st.nextToken()), st.nextToken());
     }
     Arrays.sort(cows);
-    in.close();
+    br.close();
     int[] prefix = new int[n+1];
     int sum = 0;
     for(int i = 1; i<n+1; i++){
