@@ -3,4 +3,7 @@
 *.out
 *.class
 *.txt
+*.iml
+*.xml
+.idea/*
 !README.txt
