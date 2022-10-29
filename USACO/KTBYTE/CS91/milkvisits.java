@@ -39,7 +39,7 @@ public final class milkvisits {
       if(connectedComponent[i] != 0) continue;
       ArrayDeque<Integer> toVisit = new ArrayDeque<>();
       toVisit.add(i);
-      // DFS to ident connected components
+      // BFS to ident connected components
       while(!toVisit.isEmpty()){
         int temp = toVisit.poll();
         connectedComponent[temp] = component;
