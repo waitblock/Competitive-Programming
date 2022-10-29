@@ -1,3 +1,5 @@
+// tle cases 6-12
+
 import java.util.*;
 import java.io.*;
 
@@ -7,55 +9,63 @@ public final class milkvisits {
     int n = in.nextInt();
     int m = in.nextInt();
     char[] breeds = in.next().toCharArray();
-		Farm[] farms = new Farm[n+1];
-		for(int i = 1; i<=n; i++){
-			Farm f = new Farm();
-			f.milk = (breeds[i-1] == 'G') ? 1 : -1;
-			farms[i] = f;
-		}
+    HashMap<Integer, ArrayList<Integer>> neighbors = new HashMap<>();
     for(int i = 0; i<n-1; i++){
-      int a = in.nextInt();
-  		int b = in.nextInt();
-  		farms[a].connected.add(b);
-  		farms[b].connected.add(a);
+      int r1 = in.nextInt()-1;
+      int r2 = in.nextInt()-1;
+      // System.out.println(r1);
+      // System.out.println(r2);
+      ArrayList<Integer> temp = new ArrayList<>();
+      temp.add(r2);
+      if(!(neighbors.get(r1) == null)){
+        for(int j : neighbors.get(r1)) temp.add(j);
+      }
+      // System.out.println(temp);
+      neighbors.put(r1, temp);
+      // System.out.println(neighbors);
+      ArrayList<Integer> temp2 = new ArrayList<>();
+      temp2.add(r1);
+      if(!(neighbors.get(r2) == null)){
+        for(int j : neighbors.get(r2)) temp2.add(j);
+      }
+      neighbors.put(r2,temp2);
+      // System.out.println(neighbors);
     }
-		Path[] paths = new Path[m];
-		for(int i = 0; i<m; i++){
-			Path p = new Path();
-			p.start = in.nextInt();
-			p.end = in.nextInt();
-			p.milk = in.next().equals("G") ? 1 : -1;
-			paths[i] = p;
-		}
-		in.close();
-		int[] result = new int[m];
-		for(int i = 0; i<m; i++){
-			if(valid(paths[i])){
-				result[i]++;
-			}
-		}
-		System.out.println(Arrays.toString(result));
-		PrintWriter out = new PrintWriter(new File("milkvisits.out"));
-		for(int i = 0; i<m; i++){
-			out.print(result[i]);
-		}
-		out.print("\n");
-		out.close();
-  }
 
-	static boolean valid(Path p){
-		return false;
-	}
-
-  static void dfs(Farm current, int desiredMilk){
-    
+    int[] connectedComponent = new int[n];
+    int component = 1;
+    // component ident
+    for(int i = 0; i<n; i++){
+      if(connectedComponent[i] != 0) continue;
+      ArrayDeque<Integer> toVisit = new ArrayDeque<>();
+      toVisit.add(i);
+      // DFS to ident connected components
+      while(!toVisit.isEmpty()){
+        int temp = toVisit.poll();
+        connectedComponent[temp] = component;
+        for(int neighbor : neighbors.get(temp)){
+          if(breeds[neighbor] == breeds[temp] && connectedComponent[neighbor] == 0) toVisit.add(neighbor);
+        }
+      }
+      component++;
+    }
+    PrintWriter out = new PrintWriter(new File("milkvisits.out"));
+    for(int i = 0; i<m; i++){
+      int start = in.nextInt() - 1;
+      int end = in.nextInt() - 1;
+      char prefer = in.next().charAt(0);
+      if(connectedComponent[start] == connectedComponent[end]){
+        out.print(breeds[start] == prefer ? 1 : 0);
+        System.out.print(breeds[start] == prefer ? 1 : 0);
+      }
+      else{
+        out.print(1);
+        System.out.print(1);
+      }
+    }
+    System.out.print("\n");
+    out.print("\n");
+    in.close();
+    out.close();
   }
-
-  static class Farm {
-      int milk; // G = 1, H = -1
-      HashSet<Integer> connected = new HashSet<Integer>();
-  }
-	static class Path {
-		int start, end, milk;
-	}
 }
