@@ -78,7 +78,24 @@ public final class ballet {
       if(dir == 3) this.y--;
     }
     void pivot(String foot){
-      if(foot.equals)
+      dir++;
+      dir %= 4;
+      if(foot.equals("FL")){
+        fr.y = this.y+fr.x-this.x;
+        fr.x = this.x+this.y-fr.y;
+        rl.y = this.y+rl.x-this.x;
+        rl.x = this.x+this.y-rl.y;
+        rr.y = this.y+rr.x-this.x;
+        rr.x = this.x+this.y-rr.y;
+      }
+      if(foot.equals("FR")){
+        fl.y = this.y+fl.x-this.x;
+        fl.x = this.x+this.y-fl.y;
+        rl.y = this.y+rl.x-this.x;
+        rl.x = this.x+this.y-rl.y;
+        rr.y = this.y+rr.x-this.x;
+        rr.x = this.x+this.y-rr.y;
+      }
     }
   }
 }
