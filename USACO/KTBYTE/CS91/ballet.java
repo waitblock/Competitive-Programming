@@ -12,17 +12,18 @@ public final class ballet {
   public static void main(String[] args) throws FileNotFoundException {
     Scanner in = new Scanner(new File("ballet.in"));
     int n = in.nextInt();
-    String[] foot = new String[n];
-    String[] instr = new String[n];
     for(int i = 0; i<n; i++){
       String line = in.next();
-      foot[i] = line.substring(0,2);
-      instr[i] = line.substring(2,3);
+      String foot = line.substring(0,2);
+      String instr = line.substring(2,3);
+      moveFoot(foot, instr);
     }
-    // System.out.println(Arrays.toString(foot));
-    // System.out.println(Arrays.toString(instr));
+    System.out.println(fl.toString());
+    System.out.println(fr.toString());
+    System.out.println(rl.toString());
+    System.out.println(rr.toString());
   }
-  void moveFoot(String foot, String instr){
+  static void moveFoot(String foot, String instr){
     if(foot.equals("FL")){
       fl.move(foot, instr);
     }
@@ -45,6 +46,11 @@ public final class ballet {
     }
     boolean inter(Pos p){
       return (p.x == this.x) && (p.y == this.y);
+    }
+    @Override
+    public String toString(){
+      String r = String.valueOf(x) + " " + String.valueOf(y);
+      return r;
     }
     void move(String foot, String instr){
       if(instr.equals("F")) this.moveFwd();
@@ -95,6 +101,22 @@ public final class ballet {
         rl.x = this.x+this.y-rl.y;
         rr.y = this.y+rr.x-this.x;
         rr.x = this.x+this.y-rr.y;
+      }
+      if(foot.equals("RL")){
+        fl.y = this.y+fl.x-this.x;
+        fl.x = this.x+this.y-fl.y;
+        fr.y = this.y+fr.x-this.x;
+        fr.x = this.x+this.y-fr.y;
+        rr.y = this.y+rr.x-this.x;
+        rr.x = this.x+this.y-rr.y;
+      }
+      if(foot.equals("RR")){
+        fl.y = this.y+fl.x-this.x;
+        fl.x = this.x+this.y-fl.y;
+        fr.y = this.y+fr.x-this.x;
+        fr.x = this.x+this.y-fr.y;
+        rl.y = this.y+rl.x-this.x;
+        rl.x = this.x+this.y-rl.y;
       }
     }
   }
