@@ -2,8 +2,7 @@
 *.in
 *.out
 *.class
-*.txt
+*.o
 *.iml
 *.xml
 .idea/*
-!README.txt

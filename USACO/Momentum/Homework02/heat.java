@@ -30,14 +30,22 @@ public final class heat {
     for(int i = 0; i<n; i++){
         temps[i] = in.nextInt();
     }
+    // System.out.println(Arrays.toString(temps));
 
-    float result = Float.MIN_VALUE;
+    double result = Double.MIN_VALUE;
 
-    for(int i = 0; i<n-k; i++){
+    for(int i = 0; i<n; i++){
         int sum = 0;
-        for(int j = i; j< i+k; j++) sum += temps[j];
-        result = Math.max((float) sum/ (float) k, result);
+        int inc = 0;
+        for(int j = i; j<n; j++){
+          sum += temps[j];
+          inc++;
+          if(inc >= k){
+            result = Math.max(((double) sum / (double) inc), result);
+          }
+        }
     }
+    // System.out.println(result);
     System.out.println(df.format(result));
     in.close();
   }
