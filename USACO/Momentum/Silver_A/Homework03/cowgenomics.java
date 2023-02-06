@@ -22,29 +22,29 @@ public final class cowgenomics {
   }
   static void solve(String filename) throws FileNotFoundException {
     Scanner in = new Scanner(new File(filename));
-	int n = in.nextInt();
-	int m = in.nextInt();
-	char[][] spotty = new char[n][m];
-	for(int i = 0; i<n; i++){
-		spotty[i] = in.next().toCharArray();
-	}
-	char[][] plain = new char[n][m];
-	for(int i = 0; i<n; i++){
-		plain[i] = in.next().toCharArray();
-	}
-	in.close();
-	int result = -1;
-	for(int i = 0; i<n; i++){ // n <= 500
-		for(int j = 0; j<n; j++){ // n <= 500
-			int temp = 0;
-			for(int k = 0; k<m; k++){ // m <= 50
-				if(spotty[i][k] == plain[j][k]){
-					temp++;
-				}
-			}
-			result = Math.max(temp, result);
+		int n = in.nextInt();
+		int m = in.nextInt();
+		char[][] spotty = new char[n][m];
+		for(int i = 0; i<n; i++){
+			spotty[i] = in.next().toCharArray();
 		}
-	}
-	System.out.println(result);
+		char[][] plain = new char[n][m];
+		for(int i = 0; i<n; i++){
+			plain[i] = in.next().toCharArray();
+		}
+		in.close();
+		int result = -1;
+		for(int i = 0; i<n; i++){ // n <= 500
+			for(int j = 0; j<n; j++){ // n <= 500
+				int temp = 0;
+				for(int k = 0; k<m; k++){ // m <= 50
+					if(spotty[i][k] == plain[j][k]){
+						temp++;
+					}
+				}
+				result = Math.max(temp, result);
+			}
+		}
+		System.out.println(result);
   }
 }
