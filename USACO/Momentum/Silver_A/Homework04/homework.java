@@ -18,7 +18,7 @@ public final class homework {
             sum += points[i];
             min = Math.min(min, points[i]);
             if(i > n-2) continue;
-            double temp = (sum-min)/(n-i-1);
+            double temp = (double) (sum-min)/(n-i-1);
             if(temp > max){
                 max = temp;
                 maxInd.clear();
