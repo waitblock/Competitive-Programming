@@ -19,6 +19,5 @@ public final class template {
   }
   static void solve(String filename) throws FileNotFoundException {
     Scanner in = new Scanner(new File(filename));
-    in.close();
   }
 }
