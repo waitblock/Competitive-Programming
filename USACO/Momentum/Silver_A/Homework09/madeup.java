@@ -1,6 +1,6 @@
 import java.util.*;
 
-public final class Main {
+public final class madeup {
     public static void main(String[] args){
         Scanner in = new Scanner(System.in);
         int n = in.nextInt();
